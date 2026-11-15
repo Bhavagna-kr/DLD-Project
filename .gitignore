@@ -1,0 +1,20 @@
+# Simulation outputs
+*.vcd
+*.fst
+*.lxt
+*.lxt2
+*.vvp
+*.out
+simulation/priority_load_controller_tb
+
+# Tool outputs
+.Xil/
+*.jou
+*.log
+*.wdb
+*.dcp
+*.bit
+*.ltx
+
+# macOS Finder metadata
+.DS_Store

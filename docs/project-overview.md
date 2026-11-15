@@ -1,31 +1,33 @@
 # Project Overview
 
 ## Objective
+Design and demonstrate a priority-based controller that allocates limited power to requested electrical loads.
 
-Design a controller that allocates limited power to three requested loads using a fixed priority order.
+## Included designs
+This repository preserves two distinct versions rather than merging their specifications:
 
-## Loads
+1. `fpga/`: original multi-module FPGA implementation with five loads, a 5-bit available-power input, sequential load-state transitions, overload detection, buzzer logic, and display logic.
+2. `rtl/`: a separate three-load combinational greedy allocator with a 4-bit available-power input, prepared for small-scale gate-level simulation and Tinkercad exploration.
 
+## Original FPGA load map
+| Load | Bit | Demand | Priority |
+|---|---:|---:|---|
+| L1 | 4 | 5 | Highest |
+| L2 | 3 | 4 | 2 |
+| L3 | 2 | 3 | 3 |
+| L4 | 1 | 4 | 4 |
+| L5 | 0 | 2 | Lowest |
+
+## Three-load model
 | Load | Demand | Priority |
 |---|---:|---|
-| L1 | 5 units | Highest |
-| L2 | 4 units | Medium |
-| L3 | 3 units | Lowest |
+| L1 | 5 | Highest |
+| L2 | 4 | Medium |
+| L3 | 3 | Lowest |
 
-## Inputs and outputs
+For both models, requests are considered in priority order and a load is granted only when its full demand fits the remaining capacity.
 
-- `P[3:0]`: available power, an unsigned value from 0 through 15.
-- `R1`, `R2`, `R3`: request signals for L1, L2, and L3.
-- `A1`, `A2`, `A3`: accepted-load outputs. A HIGH output means the load is granted power.
-
-## Allocation policy
-
-Inspect loads in the order L1 → L2 → L3. Accept a requested load only if its complete demand can be supplied from the remaining capacity. If a load cannot fit, skip it and continue to the next request.
-
-## Implementation milestones
-
-1. Define and verify the Boolean allocation logic.
-2. Implement the combinational design in Verilog.
-3. Recreate the circuit in Tinkercad using logic gates and switches.
-4. Test the simulator circuit against the Verilog test cases.
-5. Add screenshots and the share link after the Tinkercad build is complete.
+## Development status
+- FPGA Verilog source modules and their supplied testbenches are archived under `fpga/`.
+- The three-load combinational Verilog module and exhaustive testbench are under `rtl/`.
+- Tinkercad circuit remains a planned task; no Tinkercad link or screenshot is claimed yet.

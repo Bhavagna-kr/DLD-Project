@@ -42,4 +42,7 @@ Install Icarus Verilog (`iverilog`, `vvp`) and run from repository root:
 
 ## Tinkercad status
 
-The Tinkercad circuit has not yet been built. `tinkercad/build-plan.md` contains the implementation plan. Add the actual share URL and screenshots after the circuit has been created and tested.
+The three-load allocator has been built at gate level (3×74HC08, 3×74HC32, 1×74HC04) and tested in Tinkercad Circuits:
+https://www.tinkercad.com/things/4uLk8jznWWk-fantabulous-vihelmo
+
+See `tinkercad/wiring-guide.md` for the pin-by-pin wiring and test table, `tinkercad/schematic.png` for the gate schematic, and `tinkercad/netlist.py` for the exhaustive 128-case check of the wiring.

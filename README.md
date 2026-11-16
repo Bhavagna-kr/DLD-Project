@@ -16,7 +16,7 @@ DLD-Project/
 ├── rtl/                  # Separate three-load combinational allocator + testbench
 ├── simulation/           # Test runner scripts
 ├── tinkercad/            # Tinkercad build plan
-└── images/               # Screenshots to be added after simulation
+└── images/               # Tinkercad circuit and test screenshots
 ```
 
 ## Original FPGA implementation (`fpga/`)
@@ -46,3 +46,21 @@ The three-load allocator has been built at gate level (3×74HC08, 3×74HC32, 1×
 https://www.tinkercad.com/things/4uLk8jznWWk-fantabulous-vihelmo
 
 See `tinkercad/wiring-guide.md` for the pin-by-pin wiring and test table, `tinkercad/schematic.png` for the gate schematic, and `tinkercad/netlist.py` for the exhaustive 128-case check of the wiring.
+
+### Tinkercad results
+
+Loads: L1 = 5 units (red LED), L2 = 4 (blue), L3 = 3 (green). All three requests are ON in each test; the switches set available power P.
+
+| Full circuit (simulation stopped) |
+|---|
+| ![Full Tinkercad circuit](images/circuit.png) |
+
+| P = 12 (1100): L1 + L2 + L3 = 12, all fit | P = 8 (1000): L1 takes 5, L2 (4) doesn't fit in the 3 left, L3 (3) does |
+|---|---|
+| ![P=12, all three LEDs on](images/test-p12.png) | ![P=8, red and green on](images/test-p8.png) |
+
+| P = 4 (0100): L1 (5) doesn't fit, so L2 gets the 4 units |
+|---|
+| ![P=4, only blue on](images/test-p4.png) |
+
+The P = 8 and P = 4 cases show the priority logic skipping a load that doesn't fit and serving the next one instead.

@@ -30,4 +30,4 @@ As-built differences from the guide:
 - Inputs use SPDT slide switches (one side to +5 V, other to GND, middle pin = signal), so no pull-down resistors are needed.
 - The switches are powered by a second 5 V supply whose GND is tied to the chips' GND.
 
-Still to add: screenshots of the circuit and test cases in `images/`.
+Screenshots of the circuit and the P = 12, 8 and 4 test cases are in `images/` and shown in the main README.

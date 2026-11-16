@@ -4,8 +4,7 @@ module fpga_top (
     input wire [15:0] sw,
     input wire [4:0] pb,
 
-    output wire [15:0] led,
-    output wire Buzzer
+    output wire [15:0] led
 
 );
 
@@ -45,7 +44,6 @@ module fpga_top (
 
         .overload(overload),
         .normal(normal),
-        .buzzer(Buzzer),
 
         .busy(busy),
         .state(state),

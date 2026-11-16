@@ -6,7 +6,7 @@ Design and demonstrate a priority-based controller that allocates limited power 
 ## Included designs
 This repository preserves two distinct versions rather than merging their specifications:
 
-1. `fpga/`: original multi-module FPGA implementation with five loads, a 5-bit available-power input, sequential load-state transitions, overload detection, buzzer logic, and display logic.
+1. `fpga/`: original multi-module FPGA implementation with five loads, a 5-bit available-power input, sequential load-state transitions, overload detection, and display logic.
 2. `rtl/`: a separate three-load combinational greedy allocator with a 4-bit available-power input, prepared for small-scale gate-level simulation and Tinkercad exploration.
 
 ## Original FPGA load map
@@ -30,4 +30,4 @@ For both models, requests are considered in priority order and a load is granted
 ## Development status
 - FPGA Verilog source modules and their supplied testbenches are archived under `fpga/`.
 - The three-load combinational Verilog module and exhaustive testbench are under `rtl/`.
-- Tinkercad circuit remains a planned task; no Tinkercad link or screenshot is claimed yet.
+- The three-load allocator is built at gate level in Tinkercad Circuits and passes the test table in `tinkercad/wiring-guide.md`: https://www.tinkercad.com/things/4uLk8jznWWk-fantabulous-vihelmo

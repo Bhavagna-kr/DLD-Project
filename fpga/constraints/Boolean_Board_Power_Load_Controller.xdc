@@ -31,5 +31,3 @@ set_property -dict { PACKAGE_PIN K2 IOSTANDARD LVCMOS33 } [get_ports {led[7]}]
 ## Push button PB4 (reset)
 set_property -dict { PACKAGE_PIN M14 IOSTANDARD LVCMOS33 PULLDOWN true } [get_ports {pb[4]}]
 
-## Buzzer
-set_property -dict { PACKAGE_PIN K12 IOSTANDARD LVCMOS33 } [get_ports {Buzzer}]

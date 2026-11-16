@@ -21,7 +21,7 @@ DLD-Project/
 
 ## Original FPGA implementation (`fpga/`)
 
-The FPGA implementation supports five loads with demands L1=5, L2=4, L3=3, L4=4, and L5=2, in descending priority order. Available power is a 5-bit unsigned input (0–31). The design contains a combinational priority controller, load-state FSM, demand/overload logic, buzzer output, and display driver.
+The FPGA implementation supports five loads with demands L1=5, L2=4, L3=3, L4=4, and L5=2, in descending priority order. Available power is a 5-bit unsigned input (0–31). The design contains a combinational priority controller, load-state FSM, demand/overload logic (overload shown on an LED), and display driver.
 
 Use `fpga_top` as the board-level synthesis top with `fpga/constraints/Boolean_Board_Power_Load_Controller.xdc`.
 

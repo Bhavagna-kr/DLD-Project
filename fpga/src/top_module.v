@@ -13,7 +13,6 @@ module top_module #(
     output wire [4:0] load_status,
     output wire       overload,
     output wire       normal,
-    output wire       buzzer,
     output wire       busy,
     output wire [1:0] state,
     output wire [6:0] seg,
@@ -62,11 +61,6 @@ module top_module #(
     end
 
     assign normal = ~overload;
-
-    buzzer_controller u_buzzer (
-        .overload(overload),
-        .buzzer(buzzer)
-    );
 
     display_controller #(
         .REFRESH_CYCLES(REFRESH_CYCLES),

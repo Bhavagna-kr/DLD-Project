@@ -8,7 +8,7 @@ module tb_top_module;
     wire [5:0] total_demand;
     wire [4:0] allocated_power;
     wire [4:0] load_status;
-    wire overload, normal, buzzer, busy;
+    wire overload, normal, busy;
     wire [1:0] state;
     wire [6:0] seg;
     wire [1:0] an;
@@ -26,7 +26,6 @@ module tb_top_module;
         .load_status(load_status),
         .overload(overload),
         .normal(normal),
-        .buzzer(buzzer),
         .busy(busy),
         .state(state),
         .seg(seg),

@@ -27,4 +27,6 @@ Run:
 The testbenches are the project's simulation assets. Run them with Icarus Verilog or in Vivado Simulator. Check all console output and waveforms before claiming hardware-level validation.
 
 ## Tinkercad
-Once the gate-level circuit is built, record the simulator URL, screenshots, and test results. Test each power mode and request combination, plus invalid/multiple power-mode inputs if the model uses one-hot tier signals.
+The gate-level circuit (3×74HC08, 3×74HC32, 1×74HC04) is built at https://www.tinkercad.com/things/4uLk8jznWWk-fantabulous-vihelmo.
+
+It was tested in three stages (L1 only, then L1+L2, then all three loads), and the final 10-row table in `tinkercad/wiring-guide.md` matched in the simulator. The wiring netlist itself (`tinkercad/netlist.py`) is checked against all 128 input combinations in software.

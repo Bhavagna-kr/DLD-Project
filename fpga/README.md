@@ -7,7 +7,6 @@
 - `src/overload_detector.v`
 - `src/load_fsm.v`
 - `src/display_controller.v`
-- `src/buzzer_controller.v`
 - `src/fpga_top.v` — board-level wrapper supplied for the RealDigital Boolean board
 
 ## Testbenches
@@ -36,7 +35,6 @@ The wrapper maps:
 | `led[5]` | `overload` | Overload indicator |
 | `led[6]` | `normal` | Normal indicator |
 | `led[7]` | `busy` | Transition indicator |
-| `Buzzer` | `buzzer` | Buzzer control |
 | `clk` | `clk` | 50 MHz clock (20 ns period) |
 
 ### Constraint limitation to resolve before bitstream generation
@@ -63,4 +61,4 @@ From the repository root:
 The runner executes five testbenches. Icarus Verilog (`iverilog` and `vvp`) is required.
 
 ## Hardware notes
-The FSM starts with loads OFF after reset, sheds the lowest-priority active load first, and restores loads in priority order. The default step count is 50,000,000 cycles (one second at 50 MHz). The buzzer output is a logic signal; use an appropriate driver if the buzzer needs more current than an FPGA I/O pin can supply.
+The FSM starts with loads OFF after reset, sheds the lowest-priority active load first, and restores loads in priority order. The default step count is 50,000,000 cycles (one second at 50 MHz).

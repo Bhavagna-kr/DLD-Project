@@ -7,7 +7,7 @@
 - `src/overload_detector.v`
 - `src/load_fsm.v`
 - `src/display_controller.v`
-- `src/fpga_top.v` — board-level wrapper supplied for the RealDigital Boolean board
+- `src/fpga_top.v` — board-level wrapper for the EDGE Artix-7 board
 
 ## Testbenches
 `testbenches/` contains five testbenches for demand calculation, overload detection, priority allocation, the FSM, and the integrated `top_module`.
@@ -22,7 +22,7 @@
 Available power is 5 bits (0–31); total demand is 6 bits (0–18).
 
 ## Board wrapper and XDC
-Use **`fpga_top` as the synthesis top** with `constraints/Boolean_Board_Power_Load_Controller.xdc`.
+Use **`fpga_top` as the synthesis top** with `constraints/EDGE_Artix7_Power_Load_Controller.xdc`.
 
 The wrapper maps:
 
@@ -37,19 +37,18 @@ The wrapper maps:
 | `led[7]` | `busy` | Transition indicator |
 | `clk` | `clk` | 50 MHz clock (20 ns period) |
 
-### Constraint limitation to resolve before bitstream generation
-The supplied XDC contains physical pin assignments only for `led[7:0]`, while the provided `fpga_top.v` declares `led[15:0]` and also drives `led[13:8]` with `total_demand` and `led[15:14]` low. Those upper eight outputs are **not constrained by this XDC**. Do not generate/program a bitstream until either (a) authoritative board pin mappings for `led[15:8]` are added, or (b) the wrapper is intentionally reduced to an 8-bit LED output and the total-demand LED display is removed. No additional board pins have been guessed here.
+The wrapper uses an 8-bit LED output (`led[7:0]`), matching the pins constrained in the XDC.
 
 The XDC also constrains only `pb[4]`; this matches the wrapper usage because only `pb[4]` is referenced.
 
 ## Vivado setup
-1. Create an RTL project for the exact FPGA part/revision of the RealDigital Boolean board.
+1. Create an RTL project for part **`xc7a35tftg256-1`** (EDGE Artix-7 board).
 2. Add all `.v` files in `src/` as Design Sources.
 3. Add `testbenches/` files as Simulation Sources when simulating.
-4. Add `constraints/Boolean_Board_Power_Load_Controller.xdc` as a constraints file.
+4. Add `constraints/EDGE_Artix7_Power_Load_Controller.xdc` as a constraints file.
 5. Set `fpga_top` as the synthesis top and `tb_top_module` as the integrated simulation top.
 6. Run behavioral simulation before synthesis.
-7. Resolve all unconstrained-port/DRC warnings using the board's authoritative master XDC before bitstream generation.
+7. Run synthesis, implementation and Generate Bitstream, then program the board through Hardware Manager.
 
 ## Simulation
 From the repository root:

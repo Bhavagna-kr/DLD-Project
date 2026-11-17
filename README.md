@@ -1,6 +1,6 @@
 # Priority-Based Power Load Controller — DLD Project
 
-Digital Logic Design project containing the original five-load FPGA implementation, a separate three-load combinational allocator, Verilog testbenches, the RealDigital Boolean board constraints supplied for this project, and a Tinkercad simulation plan.
+Digital Logic Design project containing the original five-load FPGA implementation, a separate three-load combinational allocator, Verilog testbenches, constraints for the EDGE Artix-7 FPGA board (XC7A35T-FTG256), and a gate-level Tinkercad build of the three-load allocator.
 
 ## Repository layout
 
@@ -12,7 +12,7 @@ DLD-Project/
 ├── fpga/
 │   ├── src/              # Seven core modules + fpga_top board wrapper
 │   ├── testbenches/      # Five FPGA testbenches
-│   └── constraints/      # Boolean board XDC supplied by the project owner
+│   └── constraints/      # EDGE Artix-7 board XDC
 ├── rtl/                  # Separate three-load combinational allocator + testbench
 ├── simulation/           # Test runner scripts
 ├── tinkercad/            # Tinkercad build plan
@@ -23,9 +23,19 @@ DLD-Project/
 
 The FPGA implementation supports five loads with demands L1=5, L2=4, L3=3, L4=4, and L5=2, in descending priority order. Available power is a 5-bit unsigned input (0–31). The design contains a combinational priority controller, load-state FSM, demand/overload logic (overload shown on an LED), and display driver.
 
-Use `fpga_top` as the board-level synthesis top with `fpga/constraints/Boolean_Board_Power_Load_Controller.xdc`.
+Use `fpga_top` as the board-level synthesis top with `fpga/constraints/EDGE_Artix7_Power_Load_Controller.xdc`, targeting the **EDGE Artix-7 FPGA development board** (part `xc7a35tftg256-1`, 50 MHz clock).
 
-**Important constraint note:** the supplied XDC assigns pins for `led[7:0]` only, while the supplied `fpga_top.v` has a 16-bit LED output and drives `led[13:8]` with total demand. Those upper outputs require authoritative pin assignments or an intentional wrapper change before bitstream generation. No pins have been invented.
+### FPGA results
+
+The design was synthesised, implemented and run on the EDGE Artix-7 board.
+
+| Behavioural simulation (`tb_top_module`) | Running on the board |
+|---|---|
+| ![Vivado simulation](images/fpga-simulation.png) | ![EDGE Artix-7 board running the design](images/fpga-board.jpg) |
+
+In the simulation, available power = 10 and L1, L2, L5 request power (total demand 11, so overload = 1). L1 (5) and L2 (4) are granted; the 1 unit left is not enough for L5 (2), so `load_status` = 11000 and allocated power = 9.
+
+Demo video: [images/fpga-demo.mp4](images/fpga-demo.mp4)
 
 ## Separate three-load combinational allocator (`rtl/`)
 

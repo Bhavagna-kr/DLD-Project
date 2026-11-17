@@ -4,7 +4,7 @@ module fpga_top (
     input wire [15:0] sw,
     input wire [4:0] pb,
 
-    output wire [15:0] led
+    output wire [7:0] led
 
 );
 
@@ -60,11 +60,5 @@ module fpga_top (
     assign led[5] = overload;
     assign led[6] = normal;
     assign led[7] = busy;
-
-    // Display total demand in binary
-    assign led[13:8] = total_demand;
-
-    // Unused LEDs
-    assign led[15:14] = 2'b00;
 
 endmodule
